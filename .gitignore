@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.DS_Store
+._*
+dist/
+
+# X-Ray databases, backups and run output are book data, not source
+*.asc
+*.asc.bak
+*.asc.orig
+*.asc.cast
+checkpoints/
+scratch/
+
+# secrets
+.env
+*.key
