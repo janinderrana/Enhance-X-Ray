@@ -1,6 +1,6 @@
 # Enhance X-Ray
 
-A calibre plugin (internal name **Claude X-Ray**, toolbar button **Enhance X-Ray**) that improves the
+A calibre plugin that improves the
 X-Ray files WordDumb makes for Kindle books. It fixes who the characters are, rewrites entity names and
 cards, adds relationships and UK/US pronunciation lines. It runs on the Claude API or on a local model
 (Qwen3.6 through oMLX), chosen in a dialog. If the model is unreachable it leaves the X-Ray untouched.
