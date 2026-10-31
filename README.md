@@ -8,6 +8,19 @@ cards, adds relationships and UK/US pronunciation lines. It runs on the Claude A
 Current version: **1.2.15** (Mac). Platform: macOS, Apple Silicon, calibre 9.x with KFX Input/Output and the
 patched WordDumb 3.36.x.
 
+## Example
+
+*The Forty Days of Musa Dagh* on a Kindle, tapping a name in the book. Left: the X-Ray as WordDumb makes it.
+Right: after Enhance X-Ray, with a pronunciation line (`≈` marks a model's best guess) and a card written from the
+book instead of a raw excerpt.
+
+| Before | After |
+|:---:|:---:|
+| <img src="docs/images/example-1-before.png" alt="X-Ray card for Ali Nassif before: a single sentence copied from the book" width="380"> | <img src="docs/images/example-1-after.png" alt="X-Ray card for Ali Nassif after: pronunciation line and a short description" width="380"> |
+| <img src="docs/images/example-2-before.png" alt="X-Ray card for Chaush Nurhan before: a single sentence copied from the book" width="380"> | <img src="docs/images/example-2-after.png" alt="X-Ray card for Chaush Nurhan after: pronunciation line and a short description" width="380"> |
+
+Book excerpts appear only to illustrate the plugin.
+
 ## Layout
 
 | Path | What |
