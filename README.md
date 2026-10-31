@@ -21,6 +21,21 @@ book instead of a raw excerpt.
 
 Book excerpts appear only to illustrate the plugin.
 
+## How to enhance an X-Ray
+
+1. In calibre, convert the book to **KFX** (KFX Output) and generate its X-Ray with **WordDumb**.
+2. For the local route, start **oMLX**. Skip this for the Claude API.
+3. Select the book and click **Enhance X-Ray**. The dialog below opens every time. Pick **Local model** (free, offline)
+   or **Claude API**; the defaults suit most books. Tick **Dry run** to preview in the job log without writing anything.
+4. Wait for the job (about 5-9 minutes for a long novel on the local route). The log ends with an `applied:` line.
+5. Send the book to your Kindle and tap a name.
+
+<img src="docs/images/enhance-dialog.png" alt="The Enhance X-Ray dialog in calibre with the local model selected" width="460">
+
+Nothing is written until the whole run succeeds. To undo or start clean, copy `XRAY.entities.<ASIN>.asc.orig` (the
+original) or `.asc.bak` (the previous version) over the `.asc` in the book's folder. Running again starts from the
+current X-Ray.
+
 ## Layout
 
 | Path | What |
@@ -60,7 +75,7 @@ The Claude path also needs a venv with the `anthropic` package and a key in the 
 |---|---|---|
 | macOS on Apple Silicon | the whole setup | built and run on a Mac mini (M-series, 64 GB); the plugin has platform guards but is untested elsewhere |
 | [calibre](https://github.com/kovidgoyal/calibre) | host application; its Qt, config, library and MOBI reader are used | plugin minimum 5.0; run on 9.15 |
-| [WordDumb](https://github.com/xxyzz/WordDumb) | creates the X-Ray files this plugin enhances | run with 3.36.0; WordDumb installs its own dependencies |
+| [WordDumb](https://github.com/xxyzz/WordDumb) | creates the X-Ray files this plugin enhances | run with 3.36.1; WordDumb installs its own dependencies |
 | [KFX Input](https://www.mobileread.com/forums/showthread.php?t=291290) | the plugin reads the book's KFX text positions through its `kfxlib` | run with 2.34.2 |
 | [KFX Output](https://www.mobileread.com/forums/showthread.php?t=272407) | converts books to KFX, which WordDumb needs | run with 2.22.0 |
 | Amazon Kindle Previewer | does the actual KFX conversion for KFX Output | Previewer 4 on Apple Silicon also needs Rosetta |
