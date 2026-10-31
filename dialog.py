@@ -77,7 +77,7 @@ class EnhanceDialog(QDialog):
         super().__init__(parent)
         self.prefs = prefs
         self.models: list[str] = []
-        self.setWindowTitle("Claude X-Ray - Enhance X-Ray")
+        self.setWindowTitle("Enhance X-Ray")
         self.setMinimumWidth(640)
         root = QVBoxLayout(self)
 

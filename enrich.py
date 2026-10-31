@@ -1,4 +1,4 @@
-"""Claude X-Ray enrichment worker.
+"""Enhance X-Ray enrichment worker.
 
 Runs OUTSIDE calibre. Two providers:
 
@@ -1240,7 +1240,7 @@ def wiki_fetch_http(title: str, cache_dir=None, timeout: float = 15.0):
         pass
     q = urllib.parse.urlencode({"action": "query", "prop": "extracts", "explaintext": 1, "redirects": 1,
                                 "titles": title, "format": "json"})
-    req = urllib.request.Request(WIKI_API + "?" + q, headers={"User-Agent": "ClaudeXRay/1.2 (personal calibre plugin)"})
+    req = urllib.request.Request(WIKI_API + "?" + q, headers={"User-Agent": "EnhanceXRay/1.2 (personal calibre plugin)"})
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             page = next(iter(json.load(r)["query"]["pages"].values()))

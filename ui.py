@@ -24,18 +24,18 @@ TRACKING_COLUMN = "#xray_enhanced"   # calibre custom column, ticked on a real r
 def plugin_zip(action) -> str:
     """Path of the zip calibre actually loaded.
 
-    calibre names the installed file after the plugin's `name` ("Claude X-Ray.zip"),
+    calibre names the installed file after the plugin's `name` ("Enhance X-Ray.zip"),
     not after whatever the source zip was called - hard-coding a filename here
     silently runs a stale copy after an update.
     """
     path = getattr(action.interface_action_base_plugin, "plugin_path", None)
     if path and Path(path).is_file():
         return str(path)
-    for candidate in ("Claude X-Ray.zip", "ClaudeXRay.zip"):
+    for candidate in ("Enhance X-Ray.zip", "EnhanceXRay.zip"):
         found = Path(config_dir) / "plugins" / candidate
         if found.is_file():
             return str(found)
-    raise RuntimeError("cannot locate the Claude X-Ray plugin zip")
+    raise RuntimeError("cannot locate the Enhance X-Ray plugin zip")
 
 
 def find_python() -> str:
@@ -142,12 +142,12 @@ def extract_book_text(book_path: Path, out: Path) -> int:
     return sum(len(e["content"]) for e in entries)
 
 
-class ClaudeXRayAction(InterfaceAction):
-    name = "Claude X-Ray"
+class EnhanceXRayAction(InterfaceAction):
+    name = "Enhance X-Ray"
     action_spec = (
         "Enhance X-Ray",
         None,
-        "Rewrite X-Ray names and descriptions with Claude",
+        "Rewrite X-Ray names and descriptions with a local model or Claude",
         None,
     )
 
@@ -158,21 +158,21 @@ class ClaudeXRayAction(InterfaceAction):
     def start(self):
         rows = self.gui.library_view.selectionModel().selectedRows()
         if not rows:
-            return error_dialog(self.gui, "Claude X-Ray", "Select a book first.", show=True)
+            return error_dialog(self.gui, "Enhance X-Ray", "Select a book first.", show=True)
         book_id = self.gui.library_view.model().id(rows[0])
         db = self.gui.current_db.new_api
 
         fmts = {f.upper() for f in (db.formats(book_id) or ())}
         if "KFX" not in fmts:
             return error_dialog(
-                self.gui, "Claude X-Ray",
+                self.gui, "Enhance X-Ray",
                 "This book has no KFX format. Only KFX is supported for now.", show=True)
         book_path = Path(db.format_abspath(book_id, "KFX"))
 
         xrays = sorted(book_path.parent.glob("XRAY.entities.*.asc"))
         if not xrays:
             return error_dialog(
-                self.gui, "Claude X-Ray",
+                self.gui, "Enhance X-Ray",
                 "No X-Ray file found beside this book. Generate it with WordDumb first.",
                 show=True)
 
@@ -221,7 +221,7 @@ class ClaudeXRayAction(InterfaceAction):
     # ------------------------------------------------------------------ job
     def run(self, book_id: int, book_path: Path, xray: Path, choices: dict,
             log=None, abort=None, notifications=None):
-        log("Claude X-Ray")
+        log("Enhance X-Ray")
         log(f"  book : {book_path.name}")
         log(f"  xray : {xray.name}")
         enhanced = False
@@ -281,18 +281,18 @@ class ClaudeXRayAction(InterfaceAction):
     # --------------------------------------------------------------- finished
     def done(self, job):
         if job.failed:
-            return self.gui.job_exception(job, dialog_title="Claude X-Ray failed")
+            return self.gui.job_exception(job, dialog_title="Enhance X-Ray failed")
         try:
             outcome = job.result or {}
             if not outcome.get("enhanced"):
                 self.gui.status_bar.show_message(
-                    "Claude X-Ray: no changes made (see job log)", 6000)
+                    "Enhance X-Ray: no changes made (see job log)", 6000)
                 return
             note = self.mark_enhanced(outcome["book_id"])
-            self.gui.status_bar.show_message(f"Claude X-Ray finished - {note}", 6000)
+            self.gui.status_bar.show_message(f"Enhance X-Ray finished - {note}", 6000)
         except Exception:
             # the X-Ray is already written; bookkeeping must never undo that
-            self.gui.status_bar.show_message("Claude X-Ray finished", 5000)
+            self.gui.status_bar.show_message("Enhance X-Ray finished", 5000)
 
     def mark_enhanced(self, book_id: int) -> str:
         """Tick the tracking column so a re-run isn't paid for twice.

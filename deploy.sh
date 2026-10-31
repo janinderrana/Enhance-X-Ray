@@ -33,17 +33,26 @@ if [ "$DO_INSTALL" = 1 ] && pgrep -x calibre >/dev/null; then
 fi
 
 ./build.sh | head -1
-ZIP="dist/ClaudeXRay_mac_v$VER.zip"
+ZIP="dist/EnhanceXRay_mac_v$VER.zip"
 SHA=$(shasum -a 256 "$ZIP" | cut -d' ' -f1)
+CUSTOMIZE=/Applications/calibre.app/Contents/MacOS/calibre-customize
 
 if [ "$DO_INSTALL" = 1 ]; then
+  mkdir -p "$BACKUP"
+  # The plugin used to be called "Claude X-Ray". Both names share one internal package, so the old
+  # one must be removed before the new one is added. (The toolbar button then has to be re-added once:
+  # Preferences > Toolbars & menus.)
   if [ -f "$PLUGINS/Claude X-Ray.zip" ]; then
-    mkdir -p "$BACKUP"
-    cp -p "$PLUGINS/Claude X-Ray.zip" "$BACKUP/Claude X-Ray.zip.pre-deploy-$(date +%Y%m%d-%H%M%S)"
+    cp -p "$PLUGINS/Claude X-Ray.zip" "$BACKUP/Claude X-Ray.zip.pre-rename-$(date +%Y%m%d-%H%M%S)"
+    "$CUSTOMIZE" -r "Claude X-Ray" 2>&1 | grep -v SyntaxWarning || true
+    echo "removed the old 'Claude X-Ray' plugin (backed up to $BACKUP)"
+  fi
+  if [ -f "$PLUGINS/Enhance X-Ray.zip" ]; then
+    cp -p "$PLUGINS/Enhance X-Ray.zip" "$BACKUP/Enhance X-Ray.zip.pre-deploy-$(date +%Y%m%d-%H%M%S)"
     echo "backed up the installed plugin to $BACKUP"
   fi
-  /Applications/calibre.app/Contents/MacOS/calibre-customize -a "$PWD/$ZIP"
-  GOT=$(unzip -p "$PLUGINS/Claude X-Ray.zip" __init__.py | sed -nE 's/^VERSION = \(([0-9]+), ([0-9]+), ([0-9]+)\)/\1.\2.\3/p')
+  "$CUSTOMIZE" -a "$PWD/$ZIP"
+  GOT=$(unzip -p "$PLUGINS/Enhance X-Ray.zip" __init__.py | sed -nE 's/^VERSION = \(([0-9]+), ([0-9]+), ([0-9]+)\)/\1.\2.\3/p')
   [ "$GOT" = "$VER" ] || { echo "installed version is $GOT, expected $VER" >&2; exit 1; }
   echo "installed in calibre: $VER"
 fi
@@ -51,7 +60,7 @@ fi
 if [ "$DO_NAS" = 1 ]; then
   [ -n "${NAS_DIR:-}" ] || { echo "NAS_DIR is not set (environment or .deploy.env)" >&2; exit 1; }
   [ -d "$NAS_DIR" ] || { echo "NAS folder not found (is the share mounted?): $NAS_DIR" >&2; exit 1; }
-  OUT="$NAS_DIR/ClaudeXRay_mac_v${VER}_repo.zip"
+  OUT="$NAS_DIR/EnhanceXRay_mac_v${VER}_repo.zip"
   cp -X "$ZIP" "$OUT"
   printf '%s  %s\nbuilt from %s\n' "$SHA" "$(basename "$OUT")" "$REV" > "$OUT.sha256.txt"
   [ "$(shasum -a 256 "$OUT" | cut -d' ' -f1)" = "$SHA" ] || { echo "NAS copy does not match the build" >&2; exit 1; }

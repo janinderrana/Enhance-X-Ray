@@ -5,7 +5,7 @@ X-Ray files WordDumb makes for Kindle books. It fixes who the characters are, re
 cards, adds relationships and UK/US pronunciation lines. It runs on the Claude API or on a local model
 (Qwen3.6 through oMLX), chosen in a dialog. If the model is unreachable it leaves the X-Ray untouched.
 
-Current version: **1.2.15** (Mac). Platform: macOS, Apple Silicon, calibre 9.x with KFX Input/Output and the
+Current version: **1.2.16** (Mac). Platform: macOS, Apple Silicon, calibre 9.x with KFX Input/Output and the
 WordDumb 3.36.x.
 
 ## Example
@@ -48,16 +48,16 @@ current X-Ray.
 
 ## Download
 
-[**ClaudeXRay_mac_v1.2.15.zip**](https://github.com/janinderrana/Enhance-X-Ray/releases/download/v1.2.15/ClaudeXRay_mac_v1.2.15.zip)
+[**EnhanceXRay_mac_v1.2.16.zip**](https://github.com/janinderrana/Enhance-X-Ray/releases/download/v1.2.16/EnhanceXRay_mac_v1.2.16.zip)
 ([all releases](https://github.com/janinderrana/Enhance-X-Ray/releases)). While the repo is private you need to be signed in
-to GitHub with an account that has access. SHA-256: `359a03858107d0853c17793c172ed1069a841857062442590ca7c034120bf4e7`.
+to GitHub with an account that has access. SHA-256: `dc322374f5b0f52bce1223eaa50cb3774634e987e3d2b04c9fc1943d21fd9280`.
 
 ## Build and install
 
 ```bash
-./build.sh                      # -> dist/ClaudeXRay_mac_v1.2.15.zip
+./build.sh                      # -> dist/EnhanceXRay_mac_v1.2.16.zip
 # quit calibre first
-/Applications/calibre.app/Contents/MacOS/calibre-customize -a dist/ClaudeXRay_mac_v1.2.15.zip
+/Applications/calibre.app/Contents/MacOS/calibre-customize -a dist/EnhanceXRay_mac_v1.2.16.zip
 ```
 
 `./deploy.sh` does the build, the calibre install (with a backup of the installed plugin) and a copy of the zip to a
