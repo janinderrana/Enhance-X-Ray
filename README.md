@@ -6,7 +6,7 @@ cards, adds relationships and UK/US pronunciation lines. It runs on the Claude A
 (Qwen3.6 through oMLX), chosen in a dialog. If the model is unreachable it leaves the X-Ray untouched.
 
 Current version: **1.2.15** (Mac). Platform: macOS, Apple Silicon, calibre 9.x with KFX Input/Output and the
-patched WordDumb 3.36.x.
+WordDumb 3.36.x.
 
 ## Example
 
@@ -60,7 +60,7 @@ The Claude path also needs a venv with the `anthropic` package and a key in the 
 |---|---|---|
 | macOS on Apple Silicon | the whole setup | built and run on a Mac mini (M-series, 64 GB); the plugin has platform guards but is untested elsewhere |
 | [calibre](https://github.com/kovidgoyal/calibre) | host application; its Qt, config, library and MOBI reader are used | plugin minimum 5.0; run on 9.15 |
-| [WordDumb](https://github.com/xxyzz/WordDumb) | creates the X-Ray files this plugin enhances | run with 3.36.0 plus local Mac patches (not in this repo); WordDumb installs its own dependencies |
+| [WordDumb](https://github.com/xxyzz/WordDumb) | creates the X-Ray files this plugin enhances | run with 3.36.0; WordDumb installs its own dependencies |
 | [KFX Input](https://www.mobileread.com/forums/showthread.php?t=291290) | the plugin reads the book's KFX text positions through its `kfxlib` | run with 2.34.2 |
 | [KFX Output](https://www.mobileread.com/forums/showthread.php?t=272407) | converts books to KFX, which WordDumb needs | run with 2.22.0 |
 | Amazon Kindle Previewer | does the actual KFX conversion for KFX Output | Previewer 4 on Apple Silicon also needs Rosetta |
