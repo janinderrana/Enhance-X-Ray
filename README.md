@@ -18,6 +18,12 @@ patched WordDumb 3.36.x.
 | `tests/` | five suites, standard library only, no oMLX needed |
 | `tools/` | dev scripts (cast pass alone, pronunciation pass alone, dialog smoke test, end-to-end run) |
 
+## Download
+
+[**ClaudeXRay_mac_v1.2.15.zip**](https://github.com/janinderrana/Enhance-X-Ray/releases/download/v1.2.15/ClaudeXRay_mac_v1.2.15.zip)
+([all releases](https://github.com/janinderrana/Enhance-X-Ray/releases)). The repo is private, so sign in to GitHub
+with an account that has access. SHA-256: `359a03858107d0853c17793c172ed1069a841857062442590ca7c034120bf4e7`.
+
 ## Build and install
 
 ```bash
