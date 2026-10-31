@@ -21,8 +21,8 @@ patched WordDumb 3.36.x.
 ## Download
 
 [**ClaudeXRay_mac_v1.2.15.zip**](https://github.com/janinderrana/Enhance-X-Ray/releases/download/v1.2.15/ClaudeXRay_mac_v1.2.15.zip)
-([all releases](https://github.com/janinderrana/Enhance-X-Ray/releases)). The repo is private, so sign in to GitHub
-with an account that has access. SHA-256: `359a03858107d0853c17793c172ed1069a841857062442590ca7c034120bf4e7`.
+([all releases](https://github.com/janinderrana/Enhance-X-Ray/releases)). While the repo is private you need to be signed in
+to GitHub with an account that has access. SHA-256: `359a03858107d0853c17793c172ed1069a841857062442590ca7c034120bf4e7`.
 
 ## Build and install
 
@@ -91,3 +91,9 @@ Enhance X-Ray builds on the work of others and is an independent project, not af
 - **Qwen** (Alibaba) and **Gemma** (Google) are the local models; **Claude** (Anthropic) is the optional API route.
 - **Collins English Dictionary** (HarperCollins) is the source of the British pronunciations, read from your own copy.
 - **Wikipedia** contributors supply the reference text used for the relationship fact check.
+
+## License and contributing
+
+Licensed under the [GNU General Public License v3.0 or later](LICENSE), the same family of license as calibre,
+WordDumb and the KFX plugins. oMLX (Apache-2.0) runs as a separate local server. See [CONTRIBUTING.md](CONTRIBUTING.md)
+to send a change; only the maintainer approves and merges pull requests.
