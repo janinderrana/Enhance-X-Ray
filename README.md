@@ -32,6 +32,10 @@ with an account that has access. SHA-256: `359a03858107d0853c17793c172ed1069a841
 /Applications/calibre.app/Contents/MacOS/calibre-customize -a dist/ClaudeXRay_mac_v1.2.15.zip
 ```
 
+`./deploy.sh` does the build, the calibre install (with a backup of the installed plugin) and a copy of the zip to a
+NAS folder in one step, so all three stay the same. Put `NAS_DIR="<folder>"` in a git-ignored `.deploy.env`; calibre
+must be closed. Use `--no-nas` or `--no-install` to skip a step.
+
 The Claude path also needs a venv with the `anthropic` package and a key in the macOS Keychain
 (service `claude-xray`); the local path needs oMLX running and uses the standard library only.
 
