@@ -49,8 +49,7 @@ current X-Ray.
 ## Download
 
 [**EnhanceXRay_mac_v1.2.16.zip**](https://github.com/janinderrana/Enhance-X-Ray/releases/download/v1.2.16/EnhanceXRay_mac_v1.2.16.zip)
-([all releases](https://github.com/janinderrana/Enhance-X-Ray/releases)). While the repo is private you need to be signed in
-to GitHub with an account that has access. SHA-256: `dc322374f5b0f52bce1223eaa50cb3774634e987e3d2b04c9fc1943d21fd9280`.
+([all releases](https://github.com/janinderrana/Enhance-X-Ray/releases)). 
 
 ## Build and install
 
